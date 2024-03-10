@@ -1,0 +1,41 @@
+body{
+    text-align: center;
+    background-color: #A5DD9B;
+    font-family: 'Ojuju';
+    text-transform: capitalize;
+}
+
+h1{
+    font-size: 60px;
+}
+
+h6{
+    font-size: 15px;
+}
+
+.heading{
+    font-size: 30px;
+    font-weight: 800;
+}
+
+#todo-box, #completed-box, #working-box{
+    display: inline-grid;
+    background-color: rgb(171, 68, 68);
+    box-shadow: 10px 2px 10px #416D19;
+    margin: 2%;
+    width: 15%;
+    border-radius: 20px;
+    padding: 30px;
+    padding-top: 0;
+    background-color: #C5EBAA;
+}
+
+#working-btn, #todo-btn, #completed-btn{
+    border-radius: 10px;
+    font-weight: bolder;
+    background-color: #f1f1f1;
+}
+
+#task{
+    font-size: 20px;
+}

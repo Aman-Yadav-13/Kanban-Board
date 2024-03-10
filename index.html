@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board</title>
+
+    <!-- Stylesheet -->
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ojuju:wght@200&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Kanban Board</h1>
+    <h6>A tool designed to help visualize work, limit work-in-progress, and maximize efficiency</h6>
+
+    <br>
+
+    <div id="todo-box">
+        <p class="heading">To do</p>
+
+        <div id="todo">
+
+        </div>
+
+        <input id='todo-btn' type="button" value="Add Task">
+    </div>
+
+    <div id="working-box">
+        <p class="heading">Working</p>
+
+        <div id="working">
+
+        </div>
+
+        <input id='working-btn' type="button" value="Add Task">
+    </div>
+
+    <div id="completed-box">
+        <p class="heading">Completed</p>
+
+        <div id="completed">
+
+        </div>
+
+        <input id="completed-btn" type="button" value="Add Task">
+    </div>
+    
+    <script src="index.js"></script>
+</body>
+</html>
