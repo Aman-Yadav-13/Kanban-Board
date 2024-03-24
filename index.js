@@ -1,6 +1,4 @@
-var todo = [];
-var working = [];
-var completed = [];
+// Taking task (input) from user
 
 function getTask(){
     let task = prompt("Please enter a task : ", "Task");
@@ -13,29 +11,53 @@ function getTask(){
     }
 }
 
-function addItemInTodo(){
-    let element = document.createElement("p");
-    document.getElementById('todo').appendChild(element);
+// Creating task element
 
-    element.innerHTML = getTask();
-    element.setAttribute('id', 'task');
+function createElement(task){
+    let p = document.createElement('p');
+    let span = document.createElement('span');
+
+    p.setAttribute('id', 'task');
+    span.setAttribute('class', 'material-symbols-outlined md-18 remove-icon');
+
+    p.innerHTML = task;
+    span.innerHTML = 'delete_sweep';
+
+    span.addEventListener('click', () => p.parentNode.removeChild(p));
+
+    p.appendChild(span);
+
+    return p;
 }
+
+// Adding task to Todo task list
+
+function addItemInTodo(){
+    let task = getTask();
+    let element = createElement(task);
+
+    document.getElementById('todo').appendChild(element);
+}
+
+// Adding task to Working task list
 
 function addItemInWorking(){
-    let element = document.createElement("p");
-    document.getElementById('working').appendChild(element);
+    let task = getTask();
+    let element = createElement(task);
 
-    element.innerHTML = getTask();
-    element.setAttribute('id', 'task');
+    document.getElementById('working').appendChild(element);
 }
+
+// Adding task to Completed task list
 
 function addItemInCompleted(){
-    let element = document.createElement("p");
-    document.getElementById('completed').appendChild(element);
+    let task = getTask();
+    let element = createElement(task);
 
-    element.innerHTML = getTask();
-    element.setAttribute('id', 'task');
+    document.getElementById('completed').appendChild(element);
 }
+
+// Adding event listeners to add task
 
 document.getElementById('todo-btn').addEventListener('click', addItemInTodo);
 document.getElementById('working-btn').addEventListener('click', addItemInWorking);

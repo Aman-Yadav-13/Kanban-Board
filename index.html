@@ -14,41 +14,68 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ojuju:wght@200&display=swap" rel="stylesheet">
+
+    <!-- Google icons -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
-    <h1>Kanban Board</h1>
+    <h1>
+        Kanban Board
+        <span class="material-symbols-outlined md-56 kanban-icon">view_kanban</span>
+    </h1>
     <h6>A tool designed to help visualize work, limit work-in-progress, and maximize efficiency</h6>
 
     <br>
 
     <div id="todo-box">
-        <p class="heading">To do</p>
+        <p class="heading">
+            To do 
+            <span class="material-symbols-outlined md-30">format_list_bulleted</span>
+        </p>
 
         <div id="todo">
 
         </div>
 
-        <input id='todo-btn' type="button" value="Add Task">
+        <button id='todo-btn'>
+            Add Task
+            <span id='add-task-icon' class="material-symbols-outlined md-18">add_task</span>
+        </button>
+
     </div>
 
     <div id="working-box">
-        <p class="heading">Working</p>
+        <p class="heading">
+            Working
+            <span class="material-symbols-outlined md-30">format_list_bulleted</span>
+        </p>
 
         <div id="working">
 
         </div>
 
-        <input id='working-btn' type="button" value="Add Task">
+        <button id='working-btn'> 
+            Add Task 
+            <span id='add-task-icon' class="material-symbols-outlined md-18">add_task</span>
+        </button>
+
     </div>
 
     <div id="completed-box">
-        <p class="heading">Completed</p>
+        <p class="heading">
+            Completed
+            <span class="material-symbols-outlined md-30">format_list_bulleted</span>
+        </p>
 
         <div id="completed">
 
         </div>
 
-        <input id="completed-btn" type="button" value="Add Task">
+        <button id='completed-btn'>
+            Add Task
+            <span id='add-task-icon' class="material-symbols-outlined md-18">add_task</span>
+        </button>
     </div>
     
     <script src="index.js"></script>
