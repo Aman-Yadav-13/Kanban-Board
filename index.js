@@ -1,3 +1,59 @@
+let todo = [];
+let completed = [];
+let working = [];
+
+// Converting local storage data into array format
+
+function convertToArray(allTask){
+    if(allTask.length == 0){
+        return [];
+    }
+
+    let taskList = [];
+    let task = '';
+
+    for(let i=0 ; i<allTask.length ; i++){
+        if(allTask[i] == ','){
+            taskList.push(task);
+            task = '';
+        }else{
+            task = task.concat(allTask[i]);
+        }
+    }
+
+    taskList.push(task);
+
+    return taskList;
+}  
+
+// Removing task from local storage
+
+function removeFromLocalStorage(task){
+    for(let i=0 ; i<todo.length ; i++){
+        if(todo[i] == task){
+            todo.splice(i, 1);
+            localStorage.setItem('todo', todo);
+            return;
+        }
+    }
+
+    for(let i=0 ; i<completed.length ; i++){
+        if(completed[i] == task){
+            completed.splice(i, 1);
+            localStorage.setItem('completed', completed);
+            return;
+        }
+    }
+
+    for(let i=0 ; i<working.length ; i++){
+        if(working[i] == task){
+            working.splice(i, 1);
+            localStorage.setItem('working', working);
+            return;
+        }
+    }
+}
+
 // Taking task (input) from user
 
 function getTask(){
@@ -6,6 +62,8 @@ function getTask(){
     if(task == "Task"){
         alert("Oops!!! You haven't entered the task...");
         return getTask();
+    }else if(task == null){
+        return '-';
     }else{
         return task;
     }
@@ -23,8 +81,10 @@ function createElement(task){
     p.innerHTML = task;
     span.innerHTML = 'delete_sweep';
 
-    span.addEventListener('click', () => p.parentNode.removeChild(p));
-
+    span.addEventListener('click', () => {
+        p.parentNode.removeChild(p);
+        removeFromLocalStorage(task);
+    })
     p.appendChild(span);
 
     return p;
@@ -32,8 +92,17 @@ function createElement(task){
 
 // Adding task to Todo task list
 
-function addItemInTodo(){
-    let task = getTask();
+function addItemInTodo(task = ' '){
+    if(task == ' '){
+        task = getTask();
+        todo.push(task);
+        localStorage.setItem('todo', todo);
+    }
+
+    if(task == '-'){
+        return;
+    }
+
     let element = createElement(task);
 
     document.getElementById('todo').appendChild(element);
@@ -41,8 +110,17 @@ function addItemInTodo(){
 
 // Adding task to Working task list
 
-function addItemInWorking(){
-    let task = getTask();
+function addItemInWorking(task = ' '){
+    if(task == ' '){
+        task = getTask();
+        working.push(task);
+        localStorage.setItem('working', working);
+    }
+
+    if(task == '-'){
+        return;
+    }
+
     let element = createElement(task);
 
     document.getElementById('working').appendChild(element);
@@ -50,15 +128,61 @@ function addItemInWorking(){
 
 // Adding task to Completed task list
 
-function addItemInCompleted(){
-    let task = getTask();
+function addItemInCompleted(task = ' '){
+    if(task == ' '){
+        task = getTask();
+        completed.push(task);
+        localStorage.setItem('completed', completed);
+    }
+    
+    if(task == '-'){
+        return;
+    }
+
     let element = createElement(task);
 
     document.getElementById('completed').appendChild(element);
 }
 
+// Taking tasks from the local storage
+
+if(localStorage.getItem('todo') == null){
+    localStorage.setItem('todo', todo);
+}else{
+    let allTask = localStorage.getItem('todo');
+    todo = convertToArray(allTask);
+}
+
+if(localStorage.getItem('completed') == null){
+    localStorage.setItem('completed', completed);
+}else{
+    let allTask = localStorage.getItem('completed');
+    completed = convertToArray(allTask);
+}
+
+if(localStorage.getItem('working') == null){
+    localStorage.setItem('working', working);
+}else{
+    let allTask = localStorage.getItem('working');
+    working = convertToArray(allTask);
+}
+
+// Displaying all task into their respective sections
+
+for(let i=0 ; i<todo.length ; i++){
+    addItemInTodo(todo[i]);
+}
+
+for(let i=0 ; i<completed.length ; i++){
+    addItemInCompleted(completed[i]);
+}
+
+for(let i=0 ; i<working.length ; i++){
+    addItemInWorking(working[i]);
+}
+
 // Adding event listeners to add task
 
-document.getElementById('todo-btn').addEventListener('click', addItemInTodo);
-document.getElementById('working-btn').addEventListener('click', addItemInWorking);
-document.getElementById('completed-btn').addEventListener('click', addItemInCompleted);
+document.getElementById('todo-btn').addEventListener('click', () => addItemInTodo());
+document.getElementById('working-btn').addEventListener('click', () => addItemInWorking());
+document.getElementById('completed-btn').addEventListener('click', () => addItemInCompleted());
